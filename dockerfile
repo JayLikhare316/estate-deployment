@@ -40,6 +40,9 @@ RUN pip install --no-cache-dir --find-links=/wheels/ -r requirements.txt && \
 # Copy project files
 COPY . .
 
+# Collect static files
+RUN python manage.py collectstatic --noinput
+
 # Create media and static directories and set permissions
 RUN mkdir -p /app/media /app/static && \
     chown -R appuser:appuser /app
@@ -51,4 +54,4 @@ USER appuser
 EXPOSE 8000
 
 # Run migrations and start the Django server
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py migrate && gunicorn core.wsgi:application --bind 0.0.0.0:8000"]
