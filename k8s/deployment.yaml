@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: realstate-web
-        image: jaylikhare/realstate-web:${{ github.sha }}
+        image: jaylikhare/realstate-web:latest
         ports:
         - containerPort: 8000
         envFrom:
