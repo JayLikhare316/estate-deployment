@@ -2,7 +2,7 @@
 
 A Django-based real estate web application with Docker and Jenkins CI/CD pipeline integration.
 
-## Project Overview
+## Project 
 
 This is a Django web application for real estate management with the following features:
 - Agent profiles management
