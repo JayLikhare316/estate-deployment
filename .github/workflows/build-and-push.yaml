@@ -20,11 +20,14 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and push Docker image
-      uses: docker/build-push-action@v4
-      with:
-        context: .
-        push: true
-        tags: jaylikhare/realstate-web:${{ github.sha }}
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          platforms: linux/amd64, linux/arm64
+          push: true
+          tags: |
+            jaylikhare/realstate-web:${{ github.sha }}
+            jaylikhare/realstate-web:latest
 
     - name: Run Trivy vulnerability scan
       uses: aquasecurity/trivy-action@master
